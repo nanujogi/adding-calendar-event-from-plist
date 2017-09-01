@@ -7,7 +7,7 @@ Wrote this very simple program to add Birthday & Anniversary details of friends 
 
 - It will read the plist file.
 - Will add calendar event reading subject, name, dob (dd-mm-yyyy)
-- Will also set the repeat event every year using 
+- Will also set the repeat event every year using EKRecurrenceFrequency. 
 - Start date is read from dob & time is added manually 10.10 am 
 - End date is read from dob & time is set 30  
 - Sets an alaram 1 minute before.
