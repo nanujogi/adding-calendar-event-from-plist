@@ -9,7 +9,7 @@ Wrote this very simple program to add Birthday & Anniversary details of friends 
 - Will add calendar event reading subject, name, dob (dd-mm-yyyy)
 - Will also set the repeat event every year using EKRecurrenceFrequency. 
 - Start date is read from dob & time is added manually 10.10 am 
-- End date is read from dob & time is set 30  
+- End date is read from dob & time is set 25 minutes ahead of start date.  
 - Sets an alaram 1 minute before.
 
 Cheers.
