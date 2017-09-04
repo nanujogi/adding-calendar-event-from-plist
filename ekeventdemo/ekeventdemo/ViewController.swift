@@ -19,9 +19,8 @@ class ViewController: UIViewController {
     }
     
     func addevent() {
-
+        
         let eventStore = EKEventStore()
-
         eventStore.requestAccess(to: .event) { (granted, error) in
             
             if (granted) && (error == nil) {
@@ -43,10 +42,10 @@ class ViewController: UIViewController {
                     // subject & name goes below
                     let jbDict = dict as! [String: AnyObject]
                     
-                    if let title_unwrapped = jbDict["subject"] as? String,
+                    if let subject_unwrapped = jbDict["subject"] as? String,
                         let name_unwrapped = jbDict["name"] as? String {
-                        
-                        event.title = title_unwrapped + " of " + name_unwrapped
+                        event.title = subject_unwrapped + " of " + name_unwrapped
+                        event.notes = "Call \(name_unwrapped) for \(subject_unwrapped)"
                     }
                     
                     // Date
@@ -81,7 +80,6 @@ class ViewController: UIViewController {
                         event.recurrenceRules = [eventRecurrence]
                     }
                     
-                    event.notes = "This is my notes please discard"
                     event.calendar = eventStore.defaultCalendarForNewEvents
                     
                     // alaram 1 minute before
@@ -103,6 +101,10 @@ class ViewController: UIViewController {
         myalert(mytitle: "Successfully added all events in your Calendar", msg: "👍🏽")
             navigationItem.rightBarButtonItem?.isEnabled = false // disable the button
             
+            // Fetch all events
+            fetchevent(eventStore: eventStore)
+            
+            
         } // end of Bundle.main
         
     } // end of addallevents
@@ -111,6 +113,24 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // FetchEvents
+    func fetchevent(eventStore: EKEventStore) {
+        let now = Date()
+        let calendar = Calendar.current
+        var dateComponents = DateComponents.init()
+        dateComponents.day = 365
+        let futureDate = calendar.date(byAdding: dateComponents, to: now)
+        
+        let eventsPredicate = eventStore.predicateForEvents(withStart: now, end: futureDate!, calendars: nil)
+
+        let events = eventStore.events(matching: eventsPredicate)
+        
+        for event in events{
+            print ("\(event.startDate)   \(event.title)" )
+        }
+    }
+    
     
 }
 
