@@ -104,7 +104,6 @@ class ViewController: UIViewController {
             // Fetch all events
             fetchevent(eventStore: eventStore)
             
-            
         } // end of Bundle.main
         
     } // end of addallevents
@@ -125,12 +124,13 @@ class ViewController: UIViewController {
         let eventsPredicate = eventStore.predicateForEvents(withStart: now, end: futureDate!, calendars: nil)
 
         let events = eventStore.events(matching: eventsPredicate)
+           print ("Date dd-mm-yyyy     Event - Subject")
         
         for event in events{
-            print ("\(event.startDate)   \(event.title)" )
+            let mydt =  myclass.sdate(dtsent: event.startDate)
+            print ("\(mydt)          \(event.title)" )
         }
     }
-    
     
 }
 

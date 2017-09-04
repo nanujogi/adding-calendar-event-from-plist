@@ -86,6 +86,17 @@ public class MyClass {
         return (isReachable && !needsConnection)
     }
     
+    func sdate(dtsent: Date) -> String {
+        
+        let myFormatter = DateFormatter()
+//        myFormatter.dateStyle = .short
+        myFormatter.dateFormat = "dd-MM-yyyy"
+        let newDate1 = myFormatter.string(from: dtsent)
+        return newDate1
+        
+    }
+    
+    
 } // end of MyClass
 
 // Thank you Jacob Bart for your codes it rocks at github!
@@ -98,3 +109,10 @@ extension UIViewController {
         present(ac, animated: true)
     } // end of myalert
 }
+
+
+
+
+
+
+
